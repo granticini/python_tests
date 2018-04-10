@@ -39,7 +39,16 @@ class LogRecord:
         self.certificate=""
         self.matched_priority_rule=""
 
-        # ELB Only
+    def parse_log_record(self, row):
+        if len(row) == ALBLogRecord.expected_field_count:
+            return ALBLogRecord(row)
+        elif len(row) == ELBLogRecord.expected_field_count:
+            return ELBLogRecord(row)
+        else:
+            DBG("Row doesn't have enough fields: " + str(len(row)))
+            for field in row:
+                DBG(field)
+        return NotImplementedError
 
 # ------------------------------------
 # Application Load Balancer Log Record
