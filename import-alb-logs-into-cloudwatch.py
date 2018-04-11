@@ -77,11 +77,11 @@ def upload_to_cloud_watch_logs(log_group, log_stream, local_file_name):
     sorted_events = sort_list_of_dictionaries(log_events, "timestamp")
 
     print("Uploading " + str(len(log_events)) + " log events")
-#    cloudwatch_logs.put_log_events(
-#        logGroupName=log_group,
-#        logStreamName=config.log_stream_name, 
-#        logEvents = sorted_events,
-#        sequenceToken=log_sequence_token)
+    cloudwatch_logs.put_log_events(
+        logGroupName=log_group,
+        logStreamName=config.log_stream_name, 
+        logEvents = sorted_events,
+        sequenceToken=log_sequence_token)
     print("Uploaded " + str(len(sorted_events)) + " records to Cloud Watch Logs")
 
 # -----------------------------
@@ -153,12 +153,15 @@ def process_log_source(log_source):
                     continue
 
             # now upload the data into Cloud Watch Logs
-            upload_to_cloud_watch_logs(log_source.log_group, log_source.log_stream_name, local_file_name)
+            upload_to_cloud_watch_logs(
+                log_source.log_group,
+                log_source.log_stream_name,
+                local_file_name)
 
             # update config for next time
             log_source.start_after = s3_key
             with open(config.config_file_name, 'w') as config_file:
-                config_file.write(json.dumps(config.__dict__))
+                config_file.write(config.to_json_string())
 
 # ------------------------------------------
 DBG("Import ALB/ELB Logs From S3 into Cloud Watch Logs")
@@ -177,15 +180,15 @@ if not os.path.exists(config.temp_path):
     os.makedirs(config.temp_path)
 
 # Process each Log Source
-for log_source in config.log_sources:
+for log_source in config.log_sources: 
+    print(log_source.s3_key_prefix)
     process_log_source(log_source)
 
 config.end_time = time.strftime('%Y-%m-%d %H:%M:%S')
-print(config)
 
 # update config for next time
 with open(config.config_file_name, 'w') as config_file:
-    config_file.write(json.dumps(config.__dict__))
+    config_file.write(config.to_json_string())
 
 print("------------")
 print("DONE")

@@ -1,77 +1,61 @@
 {
     "config_file_name": "config-prod1.json",
-    "start_time": "",
-    "end_time": "",
-
+    "start_time": "2018-04-11 22:26:35",
+    "end_time": "2018-04-11 22:26:35",
     "account_id": "527740303038",
     "bucket_name": "prod1-logs",
     "temp_path": "logs-temp",
     "row_limit": -1,
     "file_limit": -1,
     "s3_object_limit": 100,
-
     "log_sources": [
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "elb-ws",
-
             "log_group": "lb-prod1-bureau",
             "log_stream_name": "elb-ws",
-            
             "start_after": "elb-ws/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/04/527740303038_elasticloadbalancing_ap-southeast-2_elb-ws-prod_20180404T0000Z_13.55.70.130_2tolz8pw.log"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "alb-prod1-bureau",
-
             "log_group": "lb-prod1-bureau",
             "log_stream_name": "alb-prod1-bureau",
-            
             "start_after": "alb-prod1-bureau/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/04/527740303038_elasticloadbalancing_ap-southeast-2_app.alb-prod1-bureau.f0527ccdc9af92a0_20180404T0300Z_52.63.236.244_5q5d0gds.log.gz"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "alb-prod1-smartlink",
-
             "log_group": "lb-prod1-bureau",
             "log_stream_name": "alb-prod1-smartlink",
-            
             "start_after": "alb-prod1-smartlink/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/01"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "alb-test2-subscriber",
-
             "log_group": "lb-test2-subscriber",
             "log_stream_name": "alb-test2-subscriber",
-            
             "start_after": "alb-test2-subscriber/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/01"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "alb-test3-smartlink",
-
             "log_group": "lb-test3-smartlink",
             "log_stream_name": "alb-test3-smartlink",
-            
             "start_after": "alb-test3-smartlink/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/01"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "alb-test3-web",
-
             "log_group": "lb-test3-web",
             "log_stream_name": "alb-test3-web",
-            
             "start_after": "alb-test3-web/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/01"
         },
         {
             "bucket_name": "prod1-logs",
             "s3_key_prefix": "ws-alb",
-
             "log_group": "lb-prod-bureau",
             "log_stream_name": "ws-alb",
-            
             "start_after": "ws-alb/AWSLogs/527740303038/elasticloadbalancing/ap-southeast-2/2018/04/01"
         }
     ]
